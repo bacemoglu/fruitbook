@@ -33,20 +33,44 @@ a:focus-visible { outline: 3px solid #FF8000; outline-offset: 3px; border-radius
 .brand a { color: #fff; text-decoration: none; }
 .brand .name { margin: 0; font-size: 26px; font-weight: 900; line-height: 1.15; text-shadow: 0 1px 2px rgba(0, 0, 0, .2); }
 .brand .tag { margin: 2px 0 0; font-weight: 700; opacity: .95; }
-.langs { display: flex; gap: 8px; }
-.langs a { color: #fff; font-weight: 800; font-size: 15px; padding: 6px 12px; border-radius: 999px; background: rgba(255, 255, 255, .18); text-decoration: none; }
 main { padding-top: 36px; padding-bottom: 24px; }
 section + section { margin-top: 48px; padding-top: 40px; border-top: 2px dashed var(--line); }
 h1 { font-size: 34px; line-height: 1.15; margin: 0 0 8px; font-weight: 900; }
 h2 { font-size: 22px; line-height: 1.25; margin: 32px 0 6px; font-weight: 800; }
 h3 { font-size: 18px; margin: 22px 0 4px; font-weight: 800; }
 p, ul { margin: 0 0 12px; }
-ul { padding-left: 22px; }
+ul { padding-inline-start: 22px; }
+section { scroll-margin-top: 12px; }
 .lead { font-size: 19px; color: var(--muted); }
 .meta { color: var(--muted); font-size: 15px; }
 .card { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 18px 20px; margin: 18px 0; }
 .mail { font-weight: 800; font-size: 19px; word-break: break-all; }
 footer { padding-top: 24px; padding-bottom: 40px; color: var(--muted); font-size: 15px; display: flex; gap: 16px; flex-wrap: wrap; }
+
+.langmenu { position: relative; flex: none; }
+.langmenu summary { display: inline-flex; align-items: center; gap: 7px; padding: 7px 12px; border-radius: 999px; background: rgba(255,255,255,.18);
+  color: #fff; font-size: 16px; font-weight: 800; line-height: 1.3; list-style: none; cursor: pointer; -webkit-user-select: none; user-select: none; }
+.langmenu summary::-webkit-details-marker { display: none; }
+.langmenu summary:hover { background: rgba(255,255,255,.28); }
+.langmenu summary:focus-visible { outline: 3px solid #FF8000; outline-offset: 3px; }
+.langmenu .chev { transition: transform .15s ease-out; }
+.langmenu[open] .chev { transform: rotate(180deg); }
+.langmenu ul { position: absolute; z-index: 20; top: calc(100% + 8px); inset-inline-end: 0; width: max-content; min-width: 220px; max-width: calc(100vw - 40px);
+  max-height: min(72vh, 560px); overflow: auto; margin: 0; padding: 6px; list-style: none; border-radius: 16px; background: #fff;
+  box-shadow: 0 16px 36px rgba(20,30,0,.32), 0 2px 6px rgba(20,30,0,.18); }
+.langmenu ul a { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 9px 12px; border-radius: 10px;
+  color: #26281F; font-size: 16px; font-weight: 700; line-height: 1.3; text-decoration: none; }
+.langmenu ul a:hover { background: #F1F5E4; }
+.langmenu ul a[aria-current="page"] { color: #3B6E0A; font-weight: 900; }
+@media (prefers-color-scheme: dark) {
+  .langmenu ul { background: #24271D; }
+  .langmenu ul a { color: #F1F0EA; }
+  .langmenu ul a:hover { background: #31361F; }
+  .langmenu ul a[aria-current="page"] { color: #BCE064; }
+}
+.langmenu .short { display: none; }
+@media (max-width: 480px) { .langmenu .full { display: none; } .langmenu .short { display: inline; } }
+@media (prefers-reduced-motion: reduce) { .langmenu .chev { transition: none; } }
 </style>
 </head>
 <body>
@@ -57,12 +81,11 @@ footer { padding-top: 24px; padding-bottom: 40px; color: var(--muted); font-size
       <p class="name"><a href="./">Fruit Book</a></p>
       <p class="tag">A coloring book for little hands</p>
     </div>
-    <nav class="langs" aria-label="Language / Dil"><a href="#en" lang="en">English</a><a href="#tr" lang="tr">Türkçe</a></nav>
+    <details class="langmenu"><summary aria-label="Language: Language"><svg class="globe" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.4 2.6 3.6 5.6 3.6 9s-1.2 6.4-3.6 9c-2.4-2.6-3.6-5.6-3.6-9s1.2-6.4 3.6-9z"/></svg><span>Language</span><svg class="chev" viewBox="0 0 12 12" width="12" height="12" aria-hidden="true" focusable="false"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><ul aria-label="Language"><li><a href="#de" hreflang="de"><span lang="de" dir="ltr">Deutsch</span></a></li><li><a href="#en" hreflang="en"><span lang="en" dir="ltr">English</span></a></li><li><a href="#es" hreflang="es"><span lang="es-ES" dir="ltr">Español (España)</span></a></li><li><a href="#es-419" hreflang="es-419"><span lang="es-419" dir="ltr">Español (Latinoamérica)</span></a></li><li><a href="#fr" hreflang="fr"><span lang="fr" dir="ltr">Français</span></a></li><li><a href="#nl" hreflang="nl"><span lang="nl" dir="ltr">Nederlands</span></a></li><li><a href="#pt-br" hreflang="pt-BR"><span lang="pt-BR" dir="ltr">Português (Brasil)</span></a></li><li><a href="#tr" hreflang="tr"><span lang="tr" dir="ltr">Türkçe</span></a></li><li><a href="#ar" hreflang="ar"><span lang="ar" dir="rtl">العربية</span></a></li><li><a href="#he" hreflang="he"><span lang="he" dir="rtl">עברית</span></a></li><li><a href="#ja" hreflang="ja"><span lang="ja" dir="ltr">日本語</span></a></li></ul></details>
   </div>
 </header>
 <main>
-
-<section id="en" lang="en">
+<section id="en" lang="en" dir="ltr">
   <h1>Privacy Policy</h1>
   <p class="meta">Effective November 2, 2026</p>
   <h2>Summary</h2>
@@ -90,9 +113,9 @@ footer { padding-top: 24px; padding-bottom: 40px; color: var(--muted); font-size
   <h2>Your choices, changes and contact</h2>
   <p>I hold no personal data about you or your child, so there is nothing for me to access, correct or delete. You can remove every painting at any time by deleting the app.</p>
   <p>If the app ever changes how it handles data, I will update this policy and the App Store privacy label before that version is released.</p>
-  <p>Questions about this policy: <a href="mailto:support@fruitbook.app">support@fruitbook.app</a></p>
+  <p>Questions about this policy: <a href="mailto:support@fruitbook.app" dir="ltr">support@fruitbook.app</a></p>
 </section>
-<section id="tr" lang="tr">
+<section id="tr" lang="tr" dir="ltr">
   <h1>Gizlilik Politikası</h1>
   <p class="meta">2 Kasım 2026’dan itibaren geçerlidir</p>
   <h2>Özet</h2>
@@ -120,15 +143,323 @@ footer { padding-top: 24px; padding-bottom: 40px; color: var(--muted); font-size
   <h2>Haklarınız, değişiklikler ve iletişim</h2>
   <p>Sizinle ya da çocuğunuzla ilgili hiçbir kişisel veri tutmadığım için erişilecek, düzeltilecek ya da silinecek bir veri de yoktur. Uygulamayı silerek tüm resimleri istediğiniz an silebilirsiniz.</p>
   <p>Uygulamanın verilerle ilgili davranışı değişirse bu politikayı ve App Store gizlilik etiketini o sürüm yayınlanmadan önce güncellerim.</p>
-  <p>Bu politikayla ilgili sorularınız için: <a href="mailto:support@fruitbook.app">support@fruitbook.app</a></p>
+  <p>Bu politikayla ilgili sorularınız için: <a href="mailto:support@fruitbook.app" dir="ltr">support@fruitbook.app</a></p>
 </section>
-
+<section id="de" lang="de" dir="ltr">
+  <h1>Datenschutzerklärung</h1>
+  <p class="meta">Gültig ab 2. November 2026</p>
+  <h2>Zusammenfassung</h2>
+  <p>Fruit Book erfasst, speichert und teilt keinerlei personenbezogene Daten. Alles, was ein Kind malt, bleibt auf seinem Gerät.</p>
+  <p>Fruit Book (auf Türkisch „Meyve Kitabı“) wird von Burak Acemoğlu entwickelt, einem unabhängigen Entwickler. Diese Erklärung gilt für die App auf iPhone, iPad und iPhone Duo und ist ab dem 2. November 2026 gültig.</p>
+  <h2>Was auf Ihrem Gerät bleibt</h2>
+  <ul>
+    <li><strong>Bilder:</strong> Jede Seite, die Ihr Kind ausmalt, wird auf dem Gerät gespeichert, zusammen mit einer kleinen Vorschau für die Buchseite.</li>
+    <li><strong>Einstellungen:</strong> Die App merkt sich das zuletzt verwendete Werkzeug, die Farbe und die Pinselgröße.</li>
+    <li><strong>Backups:</strong> Wenn Sie das iCloud-Backup verwenden oder auf einem Computer sichern, schließt Apple diese Dateien wie bei jeder App ein. Für diese Backups gilt die Datenschutzrichtlinie von Apple.</li>
+  </ul>
+  <p>Nichts davon verlässt das Gerät, und ich kann es nicht einsehen. Tippen Sie auf „Löschen“, um eine Seite zu leeren, oder löschen Sie die App, um alle Bilder und Einstellungen zu entfernen.</p>
+  <h2>Fotos</h2>
+  <p>Fruit Book bittet erst dann um Zugriff auf Fotos, wenn Sie auf „In Fotos sichern“ tippen. Die App fragt nur nach der Erlaubnis, Fotos hinzuzufügen: Sie kann das Bild sichern, Ihre Mediathek aber weder sehen noch lesen oder ändern.</p>
+  <p>Sie können das jederzeit unter Einstellungen › Datenschutz &amp; Sicherheit › Fotos ändern.</p>
+  <h2>Datenschutz für Kinder</h2>
+  <p>Fruit Book ist für Kinder bis 5 Jahre gemacht und im App Store in der Kategorie „Kinder“ aufgeführt. Die App erfasst keine personenbezogenen Daten von Kindern, im Einklang mit Kinderdatenschutzgesetzen wie COPPA in den USA und der DSGVO in der Europäischen Union.</p>
+  <p>Die App enthält keine Werbung, keine In-App-Käufe, keine Links aus der App heraus und keine Möglichkeit, mit anderen Menschen in Kontakt zu treten.</p>
+  <h2>Keine Drittanbieter</h2>
+  <p>Fruit Book enthält keine Werbung, keine Analysewerkzeuge, kein Tracking und keinen Code von Drittanbietern. Es gibt kein Konto und keine Anmeldung, und die App verbindet sich nicht mit dem Internet. Sie sendet also keine Daten an mich oder an andere.</p>
+  <p>Laut ihrem Datenschutzetikett im App Store werden keine Daten erfasst.</p>
+  <h2>Was Apple mit mir teilen kann</h2>
+  <p>Sie kaufen Fruit Book im App Store. Zahlung und Download wickelt daher Apple nach seiner eigenen Datenschutzrichtlinie ab. Von Apple erhalte ich nur Verkaufsberichte, die Sie nicht identifizieren.</p>
+  <p>Wenn Sie zugestimmt haben, Analysedaten mit App-Entwicklern zu teilen, kann Apple mir anonyme Absturzberichte und zusammengefasste Nutzungsstatistiken senden. Sie können das unter Einstellungen › Datenschutz &amp; Sicherheit in den Analyse-Einstellungen ausschalten.</p>
+  <h2>Ihre Wahlmöglichkeiten, Änderungen und Kontakt</h2>
+  <p>Ich speichere keine personenbezogenen Daten über Sie oder Ihr Kind. Es gibt also nichts, worauf ich zugreifen, was ich berichtigen oder was ich löschen könnte. Sie können alle Bilder jederzeit entfernen, indem Sie die App löschen.</p>
+  <p>Sollte die App einmal anders mit Daten umgehen, aktualisiere ich diese Erklärung und das Datenschutzetikett im App Store, bevor diese Version erscheint.</p>
+  <p>Fragen zu dieser Erklärung: <a href="mailto:support@fruitbook.app" dir="ltr">support@fruitbook.app</a></p>
+</section>
+<section id="fr" lang="fr" dir="ltr">
+  <h1>Politique de confidentialité</h1>
+  <p class="meta">En vigueur depuis le 2 novembre 2026</p>
+  <h2>En bref</h2>
+  <p>Fruit Book ne collecte, ne conserve et ne partage aucune donnée personnelle. Tout ce que peint un enfant reste sur son appareil.</p>
+  <p>Fruit Book (Meyve Kitabı en turc) est conçu par Burak Acemoğlu, développeur indépendant. Cette politique couvre l’app sur iPhone, iPad et iPhone Duo et s’applique depuis le 2 novembre 2026.</p>
+  <h2>Ce qui reste sur votre appareil</h2>
+  <ul>
+    <li><strong>Dessins :</strong> chaque page coloriée par votre enfant est enregistrée sur l’appareil, avec un petit aperçu pour la page du livre.</li>
+    <li><strong>Réglages :</strong> l’app se souvient du dernier outil, de la couleur et de la taille du pinceau.</li>
+    <li><strong>Sauvegardes :</strong> si vous utilisez la sauvegarde iCloud ou sauvegardez sur un ordinateur, Apple y inclut ces fichiers, comme pour toute app. Ces sauvegardes relèvent de la politique de confidentialité d’Apple.</li>
+  </ul>
+  <p>Rien de tout cela ne quitte l’appareil, et je ne peux pas y accéder. Touchez « Effacer » pour vider une page, ou supprimez l’app pour retirer tous les dessins et réglages.</p>
+  <h2>Photos</h2>
+  <p>Fruit Book demande l’accès à Photos uniquement lorsque vous touchez « Enregistrer dans Photos ». Il demande seulement à ajouter des photos : il peut enregistrer le dessin, mais ne peut ni voir, ni lire, ni modifier votre photothèque.</p>
+  <p>Vous pouvez modifier ce choix à tout moment dans Réglages › Confidentialité et sécurité › Photos.</p>
+  <h2>Confidentialité des enfants</h2>
+  <p>Fruit Book est conçu pour les enfants de 5 ans et moins et figure dans la catégorie Enfants de l’App Store. Il ne collecte aucune donnée personnelle auprès des enfants, conformément aux lois sur la protection de la vie privée des enfants comme la COPPA aux États-Unis et le RGPD dans l’Union européenne.</p>
+  <p>L’app ne contient ni publicité, ni achat intégré, ni lien vers l’extérieur, ni moyen de contacter d’autres personnes.</p>
+  <h2>Aucun tiers</h2>
+  <p>Fruit Book ne contient aucune publicité, aucun outil d’analyse, aucun suivi ni aucun code tiers. Il n’y a ni compte ni connexion, et l’app ne se connecte pas à Internet : elle n’envoie donc aucune donnée, ni à moi ni à personne d’autre.</p>
+  <p>Son étiquette de confidentialité sur l’App Store indique qu’aucune donnée n’est collectée.</p>
+  <h2>Ce qu’Apple peut me transmettre</h2>
+  <p>Vous achetez Fruit Book sur l’App Store : le paiement et le téléchargement sont donc gérés par Apple, selon sa propre politique de confidentialité. Apple ne me transmet que des rapports de ventes qui ne permettent pas de vous identifier.</p>
+  <p>Si vous avez choisi de partager les données d’analyse avec les développeurs, Apple peut m’envoyer des rapports de plantage anonymes et des statistiques d’utilisation agrégées. Vous pouvez désactiver ce partage dans les réglages d’analyse, sous Réglages › Confidentialité et sécurité.</p>
+  <h2>Vos choix, modifications et contact</h2>
+  <p>Je ne détiens aucune donnée personnelle sur vous ou votre enfant : il n’y a donc rien à consulter, à corriger ou à supprimer. Vous pouvez effacer tous les dessins à tout moment en supprimant l’app.</p>
+  <p>Si l’app change un jour sa façon de traiter les données, je mettrai à jour cette politique et l’étiquette de confidentialité de l’App Store avant la sortie de cette version.</p>
+  <p>Questions sur cette politique : <a href="mailto:support@fruitbook.app" dir="ltr">support@fruitbook.app</a></p>
+</section>
+<section id="es" lang="es-ES" dir="ltr">
+  <h1>Política de privacidad</h1>
+  <p class="meta">Vigente desde el 2 de noviembre de 2026</p>
+  <h2>Resumen</h2>
+  <p>Fruit Book no recopila, guarda ni comparte ningún dato personal. Todo lo que pinta un niño se queda en su dispositivo.</p>
+  <p>Fruit Book (Meyve Kitabı en turco) lo desarrolla Burak Acemoğlu, desarrollador independiente. Esta política cubre la app en iPhone, iPad y iPhone Duo y está vigente desde el 2 de noviembre de 2026.</p>
+  <h2>Lo que se queda en tu dispositivo</h2>
+  <ul>
+    <li><strong>Dibujos:</strong> cada página que colorea tu peque se guarda en el dispositivo, con una pequeña vista previa para la página del libro.</li>
+    <li><strong>Ajustes:</strong> la app recuerda la última herramienta, el color y el grosor del pincel.</li>
+    <li><strong>Copias de seguridad:</strong> si usas la copia de seguridad de iCloud o haces copias en un ordenador, Apple incluye estos archivos, como con cualquier app. Esas copias se rigen por la política de privacidad de Apple.</li>
+  </ul>
+  <p>Nada de esto sale del dispositivo y yo no puedo verlo. Toca «Borrar» para vaciar una página o elimina la app para quitar todos los dibujos y ajustes.</p>
+  <h2>Fotos</h2>
+  <p>Fruit Book solo pide acceso a Fotos cuando tocas «Guardar en Fotos». Solo pide permiso para añadir fotos: puede guardar el dibujo, pero no puede ver, leer ni cambiar tu fototeca.</p>
+  <p>Puedes cambiarlo cuando quieras en Ajustes › Privacidad y seguridad › Fotos.</p>
+  <h2>Privacidad de los niños</h2>
+  <p>Fruit Book está pensado para niños de 5 años o menos y aparece en la categoría Niños del App Store. No recopila ningún dato personal de los niños, de acuerdo con leyes de protección de la privacidad infantil como la COPPA en Estados Unidos y el RGPD en la Unión Europea.</p>
+  <p>La app no tiene anuncios, compras dentro de la app, enlaces que salgan de la app ni forma de contactar con otras personas.</p>
+  <h2>Sin terceros</h2>
+  <p>Fruit Book no contiene publicidad, análisis, seguimiento ni código de terceros. No tiene cuentas ni inicio de sesión y no se conecta a internet, así que no envía datos ni a mí ni a nadie.</p>
+  <p>Su etiqueta de privacidad en el App Store indica que no se recopilan datos.</p>
+  <h2>Lo que Apple puede compartir conmigo</h2>
+  <p>Compras Fruit Book en el App Store, así que Apple gestiona el pago y la descarga según su propia política de privacidad. De Apple solo recibo informes de ventas que no te identifican.</p>
+  <p>Si has elegido compartir datos de análisis con los desarrolladores, Apple puede enviarme informes de fallos anónimos y estadísticas de uso agregadas. Puedes desactivarlo en los ajustes de análisis, en Ajustes › Privacidad y seguridad.</p>
+  <h2>Tus opciones, cambios y contacto</h2>
+  <p>No guardo ningún dato personal sobre ti ni sobre tu peque, así que no hay nada a lo que acceder, que corregir o que eliminar. Puedes borrar todos los dibujos en cualquier momento eliminando la app.</p>
+  <p>Si algún día la app cambia su forma de tratar los datos, actualizaré esta política y la etiqueta de privacidad del App Store antes de publicar esa versión.</p>
+  <p>Preguntas sobre esta política: <a href="mailto:support@fruitbook.app" dir="ltr">support@fruitbook.app</a></p>
+</section>
+<section id="es-419" lang="es-419" dir="ltr">
+  <h1>Política de privacidad</h1>
+  <p class="meta">Vigente desde el 2 de noviembre de 2026</p>
+  <h2>Resumen</h2>
+  <p>Fruit Book no recopila, guarda ni comparte ningún dato personal. Todo lo que pinta un niño se queda en su dispositivo.</p>
+  <p>Fruit Book (Meyve Kitabı en turco) lo desarrolla Burak Acemoğlu, desarrollador independiente. Esta política cubre la app en iPhone, iPad y iPhone Duo y está vigente desde el 2 de noviembre de 2026.</p>
+  <h2>Lo que se queda en tu dispositivo</h2>
+  <ul>
+    <li><strong>Dibujos:</strong> cada página que colorea tu pequeño se guarda en el dispositivo, con una pequeña vista previa para la página del libro.</li>
+    <li><strong>Configuración:</strong> la app recuerda la última herramienta, el color y el grosor del pincel.</li>
+    <li><strong>Respaldos:</strong> si usas el respaldo de iCloud o respaldas en una computadora, Apple incluye estos archivos, como con cualquier app. Esos respaldos se rigen por la política de privacidad de Apple.</li>
+  </ul>
+  <p>Nada de esto sale del dispositivo y yo no puedo verlo. Toca “Borrar” para vaciar una página o elimina la app para quitar todos los dibujos y la configuración.</p>
+  <h2>Fotos</h2>
+  <p>Fruit Book solo pide acceso a Fotos cuando tocas “Guardar en Fotos”. Solo pide permiso para agregar fotos: puede guardar el dibujo, pero no puede ver, leer ni cambiar tu fototeca.</p>
+  <p>Puedes cambiarlo cuando quieras en Configuración › Privacidad y seguridad › Fotos.</p>
+  <h2>Privacidad de los niños</h2>
+  <p>Fruit Book está pensado para niños de 5 años o menos y aparece en la categoría Niños del App Store. No recopila ningún dato personal de los niños, de acuerdo con leyes de protección de la privacidad infantil como la COPPA en Estados Unidos y el RGPD en la Unión Europea.</p>
+  <p>La app no tiene anuncios, compras dentro de la app, enlaces que salgan de la app ni forma de contactar a otras personas.</p>
+  <h2>Sin terceros</h2>
+  <p>Fruit Book no contiene publicidad, análisis, rastreo ni código de terceros. No tiene cuentas ni inicio de sesión y no se conecta a internet, así que no envía datos ni a mí ni a nadie.</p>
+  <p>Su etiqueta de privacidad en el App Store indica que no se recopilan datos.</p>
+  <h2>Lo que Apple puede compartir conmigo</h2>
+  <p>Compras Fruit Book en el App Store, así que Apple se encarga del pago y la descarga según su propia política de privacidad. De Apple solo recibo informes de ventas que no te identifican.</p>
+  <p>Si elegiste compartir datos de análisis con los desarrolladores, Apple puede enviarme informes de fallas anónimos y estadísticas de uso agregadas. Puedes desactivarlo en los ajustes de análisis, en Configuración › Privacidad y seguridad.</p>
+  <h2>Tus opciones, cambios y contacto</h2>
+  <p>No guardo ningún dato personal sobre ti ni sobre tu pequeño, así que no hay nada a lo que acceder, que corregir o que eliminar. Puedes borrar todos los dibujos en cualquier momento eliminando la app.</p>
+  <p>Si algún día la app cambia su forma de tratar los datos, actualizaré esta política y la etiqueta de privacidad del App Store antes de publicar esa versión.</p>
+  <p>Preguntas sobre esta política: <a href="mailto:support@fruitbook.app" dir="ltr">support@fruitbook.app</a></p>
+</section>
+<section id="pt-br" lang="pt-BR" dir="ltr">
+  <h1>Política de privacidade</h1>
+  <p class="meta">Em vigor desde 2 de novembro de 2026</p>
+  <h2>Resumo</h2>
+  <p>O Fruit Book não coleta, armazena nem compartilha nenhuma informação pessoal. Tudo o que a criança pinta fica no aparelho dela.</p>
+  <p>O Fruit Book (Meyve Kitabı em turco) é feito por Burak Acemoğlu, desenvolvedor independente. Esta política abrange o app no iPhone, iPad e iPhone Duo e está em vigor desde 2 de novembro de 2026.</p>
+  <h2>O que fica no seu aparelho</h2>
+  <ul>
+    <li><strong>Desenhos:</strong> cada página que a criança colore é salva no aparelho, com uma pequena prévia para a página do livro.</li>
+    <li><strong>Ajustes:</strong> o app lembra a última ferramenta, a cor e o tamanho do pincel.</li>
+    <li><strong>Backups:</strong> se você usa o Backup do iCloud ou faz backup em um computador, a Apple inclui esses arquivos, como faz com qualquer app. Esses backups seguem a política de privacidade da Apple.</li>
+  </ul>
+  <p>Nada disso sai do aparelho, e eu não tenho acesso a isso. Toque em “Limpar” para apagar uma página ou apague o app para remover todos os desenhos e ajustes.</p>
+  <h2>Fotos</h2>
+  <p>O Fruit Book pede acesso a Fotos somente quando você toca em “Salvar em Fotos”. Ele pede apenas permissão para adicionar fotos: pode salvar o desenho, mas não pode ver, ler nem alterar sua fototeca.</p>
+  <p>Você pode mudar isso a qualquer momento em Ajustes › Privacidade e Segurança › Fotos.</p>
+  <h2>Privacidade das crianças</h2>
+  <p>O Fruit Book foi feito para crianças de até 5 anos e está na categoria Crianças da App Store. Ele não coleta nenhuma informação pessoal de crianças, de acordo com leis de privacidade infantil como a COPPA, nos Estados Unidos, e o GDPR, na União Europeia.</p>
+  <p>O app não tem anúncios, compras dentro do app, links para fora do app nem forma de contato com outras pessoas.</p>
+  <h2>Sem terceiros</h2>
+  <p>O Fruit Book não contém publicidade, análises, rastreamento nem código de terceiros. Não tem conta nem login e não se conecta à internet, então não envia dados para mim nem para ninguém.</p>
+  <p>O rótulo de privacidade do app na App Store informa que nenhum dado é coletado.</p>
+  <h2>O que a Apple pode compartilhar comigo</h2>
+  <p>Você compra o Fruit Book na App Store, então a Apple cuida do pagamento e do download de acordo com a própria política de privacidade. Da Apple recebo apenas relatórios de vendas que não identificam você.</p>
+  <p>Se você optou por compartilhar análises com desenvolvedores, a Apple pode me enviar relatórios de falhas anônimos e estatísticas de uso agregadas. Você pode desativar isso nos ajustes de análise, em Ajustes › Privacidade e Segurança.</p>
+  <h2>Suas escolhas, mudanças e contato</h2>
+  <p>Não guardo nenhum dado pessoal sobre você ou sua criança, então não há nada para acessar, corrigir ou apagar. Você pode remover todos os desenhos a qualquer momento apagando o app.</p>
+  <p>Se o app mudar a forma como lida com dados, vou atualizar esta política e o rótulo de privacidade da App Store antes de lançar essa versão.</p>
+  <p>Dúvidas sobre esta política: <a href="mailto:support@fruitbook.app" dir="ltr">support@fruitbook.app</a></p>
+</section>
+<section id="ja" lang="ja" dir="ltr">
+  <h1>プライバシーポリシー</h1>
+  <p class="meta">2026年11月2日発効</p>
+  <h2>概要</h2>
+  <p>Fruit Bookは、個人情報を一切収集、保存、共有しません。お子さまが描いたものはすべて、お使いのデバイスの中だけに残ります。</p>
+  <p>Fruit Book（トルコ語名：Meyve Kitabı）は、個人開発者のBurak Acemoğluが制作しています。このポリシーはiPhone、iPad、iPhone Duo向けのAppを対象とし、2026年11月2日から適用されます。</p>
+  <h2>デバイスに保存されるもの</h2>
+  <ul>
+    <li><strong>絵：</strong>お子さまがぬった各ページは、本の画面に表示する小さなプレビューとともにデバイスに保存されます。</li>
+    <li><strong>設定：</strong>最後に使った道具、色、ブラシの太さを記憶します。</li>
+    <li><strong>バックアップ：</strong>iCloudバックアップやコンピュータへのバックアップを利用している場合、ほかのAppと同様に、Appleがこれらのファイルをバックアップに含めます。これらのバックアップにはAppleのプライバシーポリシーが適用されます。</li>
+  </ul>
+  <p>これらの情報がデバイスの外に出ることはなく、開発者が見ることもできません。ページを1枚消すには「消去」をタップし、すべての絵と設定を削除するにはAppを削除してください。</p>
+  <h2>写真</h2>
+  <p>Fruit Bookが「写真」へのアクセスを求めるのは、「写真に保存」をタップしたときだけです。求めるのは写真の追加の許可のみなので、絵を保存することはできても、ライブラリの写真を見たり、読み取ったり、変更したりすることはできません。</p>
+  <p>この設定は、「設定」›「プライバシーとセキュリティ」›「写真」でいつでも変更できます。</p>
+  <h2>お子さまのプライバシー</h2>
+  <p>Fruit Bookは5歳以下のお子さま向けに作られており、App Storeの「キッズ」カテゴリに掲載されています。米国のCOPPAやEUのGDPRなど、子どものプライバシーを守る法律に沿って、お子さまから個人情報を一切収集しません。</p>
+  <p>Appには、広告、App内課金、App外へのリンク、ほかの人と連絡を取る機能はありません。</p>
+  <h2>第三者について</h2>
+  <p>Fruit Bookには、広告、解析、トラッキング、第三者のコードは含まれていません。アカウントやサインインはなく、インターネットにも接続しないため、開発者にもほかの誰にもデータを送信しません。</p>
+  <p>App Storeのプライバシーラベルでも、データは収集されないと表示されています。</p>
+  <h2>Appleから開発者に提供される情報</h2>
+  <p>Fruit BookはApp Storeで購入されるため、支払いとダウンロードはAppleが独自のプライバシーポリシーに基づいて処理します。開発者がAppleから受け取るのは、個人を特定できない売上レポートのみです。</p>
+  <p>App開発者との解析データの共有をオンにしている場合、Appleから匿名のクラッシュレポートや集計された利用統計が届くことがあります。これは「設定」›「プライバシーとセキュリティ」の解析の設定でオフにできます。</p>
+  <h2>選択肢、変更、お問い合わせ</h2>
+  <p>あなたやお子さまに関する個人データを一切保持していないため、開示、訂正、削除の対象となるデータもありません。Appを削除すれば、いつでもすべての絵を消すことができます。</p>
+  <p>今後、データの取り扱いが変わる場合は、そのバージョンを公開する前に、このポリシーとApp Storeのプライバシーラベルを更新します。</p>
+  <p>このポリシーに関するお問い合わせ：<a href="mailto:support@fruitbook.app" dir="ltr">support@fruitbook.app</a></p>
+</section>
+<section id="nl" lang="nl" dir="ltr">
+  <h1>Privacybeleid</h1>
+  <p class="meta">Geldig vanaf 2 november 2026</p>
+  <h2>Samenvatting</h2>
+  <p>Fruit Book verzamelt, bewaart of deelt geen enkele persoonsgegevens. Alles wat een kind tekent, blijft op zijn of haar apparaat.</p>
+  <p>Fruit Book (in het Turks Meyve Kitabı) wordt gemaakt door Burak Acemoğlu, een onafhankelijke ontwikkelaar. Dit beleid geldt voor de app op iPhone, iPad en iPhone Duo en is van kracht vanaf 2 november 2026.</p>
+  <h2>Wat op je apparaat blijft</h2>
+  <ul>
+    <li><strong>Tekeningen:</strong> elke pagina die je kind inkleurt, wordt op het apparaat bewaard, met een kleine voorvertoning voor de boekpagina.</li>
+    <li><strong>Instellingen:</strong> de app onthoudt het laatst gebruikte gereedschap, de kleur en de penseeldikte.</li>
+    <li><strong>Reservekopieën:</strong> als je iCloud-reservekopie gebruikt of een reservekopie op een computer maakt, neemt Apple deze bestanden mee, net als bij elke andere app. Op die reservekopieën is het privacybeleid van Apple van toepassing.</li>
+  </ul>
+  <p>Niets hiervan verlaat het apparaat, en ik kan het niet zien. Tik op ‘Wissen’ om één pagina leeg te maken, of verwijder de app om alle tekeningen en instellingen te verwijderen.</p>
+  <h2>Foto’s</h2>
+  <p>Fruit Book vraagt alleen om toegang tot Foto’s als je op ‘Bewaar in Foto’s’ tikt. De app vraagt alleen toestemming om foto’s toe te voegen: hij kan de tekening bewaren, maar je bibliotheek niet bekijken, lezen of wijzigen.</p>
+  <p>Je kunt dit altijd wijzigen in Instellingen › Privacy en beveiliging › Foto’s.</p>
+  <h2>Privacy van kinderen</h2>
+  <p>Fruit Book is gemaakt voor kinderen van 5 jaar en jonger en staat in de categorie Kinderen van de App Store. De app verzamelt geen persoonsgegevens van kinderen, in overeenstemming met wetten voor de privacy van kinderen zoals COPPA in de Verenigde Staten en de AVG in de Europese Unie.</p>
+  <p>De app heeft geen advertenties, geen in-app-aankopen, geen links naar buiten de app en geen manier om contact te leggen met anderen.</p>
+  <h2>Geen derde partijen</h2>
+  <p>Fruit Book bevat geen advertenties, analyse, tracking of code van derden. Er is geen account of inlog, en de app maakt geen verbinding met internet. Hij stuurt dus geen gegevens naar mij of naar iemand anders.</p>
+  <p>Het privacylabel van de app in de App Store vermeldt dat er geen gegevens worden verzameld.</p>
+  <h2>Wat Apple met mij kan delen</h2>
+  <p>Je koopt Fruit Book in de App Store, dus Apple regelt de betaling en de download volgens zijn eigen privacybeleid. Van Apple ontvang ik alleen verkooprapporten waaruit niet blijkt wie je bent.</p>
+  <p>Als je ervoor hebt gekozen analysegegevens met app-ontwikkelaars te delen, kan Apple mij anonieme crashrapporten en samengevoegde gebruiksstatistieken sturen. Je kunt dit uitzetten bij de analyse-instellingen in Instellingen › Privacy en beveiliging.</p>
+  <h2>Jouw keuzes, wijzigingen en contact</h2>
+  <p>Ik bewaar geen persoonsgegevens over jou of je kind, dus er valt niets in te zien, te corrigeren of te verwijderen. Je kunt alle tekeningen op elk moment verwijderen door de app te verwijderen.</p>
+  <p>Als de app ooit anders met gegevens omgaat, werk ik dit beleid en het privacylabel in de App Store bij voordat die versie verschijnt.</p>
+  <p>Vragen over dit beleid: <a href="mailto:support@fruitbook.app" dir="ltr">support@fruitbook.app</a></p>
+</section>
+<section id="ar" lang="ar" dir="rtl">
+  <h1>سياسة الخصوصية</h1>
+  <p class="meta">سارية اعتبارًا من 2 نوفمبر 2026</p>
+  <h2>ملخص</h2>
+  <p>لا يجمع Fruit Book أي معلومات شخصية ولا يخزنها ولا يشاركها. كل ما يلوّنه الطفل يبقى على جهازه.</p>
+  <p>يطوّر Fruit Book (واسمه بالتركية Meyve Kitabı) المطوّر المستقل Burak Acemoğlu. تشمل هذه السياسة التطبيق على iPhone وiPad وiPhone Duo، وهي سارية اعتبارًا من 2 نوفمبر 2026.</p>
+  <h2>ما يبقى على جهازك</h2>
+  <ul>
+    <li><strong>الرسومات:</strong> تُحفظ كل صفحة يلوّنها طفلك على الجهاز، مع معاينة صغيرة لصفحة الكتاب.</li>
+    <li><strong>الإعدادات:</strong> يتذكر التطبيق آخر أداة ولون وحجم فرشاة.</li>
+    <li><strong>النسخ الاحتياطية:</strong> إذا كنت تستخدم النسخ الاحتياطي على iCloud أو تنسخ احتياطيًا على كمبيوتر، تُدرج Apple هذه الملفات كما تفعل مع أي تطبيق. وتخضع هذه النسخ لسياسة خصوصية Apple.</li>
+  </ul>
+  <p>لا يغادر أي من ذلك الجهاز، ولا يمكنني الاطلاع عليه. المس «مسح» لتفريغ صفحة واحدة، أو احذف التطبيق لإزالة جميع الرسومات والإعدادات.</p>
+  <h2>الصور</h2>
+  <p>لا يطلب Fruit Book الوصول إلى الصور إلا عندما تلمس «حفظ في الصور». ويطلب إذن الإضافة فقط، فيمكنه حفظ الرسمة لكنه لا يستطيع رؤية مكتبة الصور أو قراءتها أو تغييرها.</p>
+  <p>يمكنك تغيير ذلك في أي وقت من الإعدادات › الخصوصية والأمن › الصور.</p>
+  <h2>خصوصية الأطفال</h2>
+  <p>صُمم Fruit Book للأطفال حتى سن 5 سنوات، وهو مدرج ضمن فئة الأطفال في App Store. ولا يجمع أي معلومات شخصية من الأطفال، بما يتوافق مع قوانين حماية خصوصية الأطفال مثل قانون COPPA في الولايات المتحدة واللائحة العامة لحماية البيانات (GDPR) في الاتحاد الأوروبي.</p>
+  <p>لا يحتوي التطبيق على إعلانات أو عمليات شراء داخل التطبيق أو روابط إلى خارجه، ولا يتيح التواصل مع الآخرين.</p>
+  <h2>لا أطراف ثالثة</h2>
+  <p>لا يحتوي Fruit Book على إعلانات أو أدوات تحليل أو تتبع أو أي شيفرة من أطراف ثالثة. لا يتطلب حسابًا أو تسجيل دخول، ولا يتصل بالإنترنت، لذا لا يرسل أي بيانات إليّ أو إلى أي شخص آخر.</p>
+  <p>وتوضح بطاقة الخصوصية الخاصة به في App Store أنه لا يتم جمع أي بيانات.</p>
+  <h2>ما قد تشاركه Apple معي</h2>
+  <p>تشتري Fruit Book من App Store، لذا تتولى Apple الدفع والتنزيل وفق سياسة الخصوصية الخاصة بها. ولا أتلقى من Apple سوى تقارير مبيعات لا تكشف هويتك.</p>
+  <p>إذا اخترت مشاركة التحليلات مع مطوري التطبيقات، فقد ترسل لي Apple تقارير أعطال مجهولة الهوية وإحصاءات استخدام مجمّعة. يمكنك إيقاف ذلك من إعدادات التحليلات ضمن الإعدادات › الخصوصية والأمن.</p>
+  <h2>خياراتك والتغييرات والتواصل</h2>
+  <p>لا أحتفظ بأي بيانات شخصية عنك أو عن طفلك، لذا لا يوجد ما يمكن الاطلاع عليه أو تصحيحه أو حذفه. ويمكنك إزالة جميع الرسومات في أي وقت بحذف التطبيق.</p>
+  <p>إذا تغيّرت طريقة تعامل التطبيق مع البيانات يومًا ما، فسأحدّث هذه السياسة وبطاقة الخصوصية في App Store قبل إصدار تلك النسخة.</p>
+  <p>للأسئلة حول هذه السياسة: <a href="mailto:support@fruitbook.app" dir="ltr">support@fruitbook.app</a></p>
+</section>
+<section id="he" lang="he" dir="rtl">
+  <h1>מדיניות פרטיות</h1>
+  <p class="meta">בתוקף מ־2 בנובמבר 2026</p>
+  <h2>בקצרה</h2>
+  <p>Fruit Book לא אוסף, לא שומר ולא משתף שום מידע אישי. כל מה שהילד או הילדה צובעים נשאר במכשיר שלהם.</p>
+  <p>את Fruit Book (בטורקית: Meyve Kitabı) מפתח Burak Acemoğlu, מפתח עצמאי. מדיניות זו חלה על היישום ב־iPhone, ב־iPad וב־iPhone Duo ונכנסה לתוקף ב־2 בנובמבר 2026.</p>
+  <h2>מה נשאר במכשיר שלכם</h2>
+  <ul>
+    <li><strong>ציורים:</strong> כל עמוד שהילדים צובעים נשמר במכשיר, יחד עם תצוגה מקדימה קטנה לעמוד הספר.</li>
+    <li><strong>הגדרות:</strong> היישום זוכר את הכלי, הצבע ועובי המכחול האחרונים.</li>
+    <li><strong>גיבויים:</strong> אם אתם משתמשים בגיבוי iCloud או מגבים למחשב, Apple כוללת את הקבצים האלה כמו בכל יישום. על הגיבויים האלה חלה מדיניות הפרטיות של Apple.</li>
+  </ul>
+  <p>שום דבר מזה לא יוצא מהמכשיר, ואני לא יכול לראות אותו. כדי לרוקן עמוד אחד נוגעים ב״ניקוי״, וכדי להסיר את כל הציורים וההגדרות מוחקים את היישום.</p>
+  <h2>תמונות</h2>
+  <p>Fruit Book מבקש גישה לתמונות רק כשנוגעים ב״שמירה בתמונות״. הוא מבקש הרשאה להוספת תמונות בלבד: הוא יכול לשמור את הציור, אבל לא יכול לראות, לקרוא או לשנות את ספריית התמונות שלכם.</p>
+  <p>אפשר לשנות זאת בכל עת בהגדרות › פרטיות ואבטחה › תמונות.</p>
+  <h2>פרטיות ילדים</h2>
+  <p>Fruit Book נועד לילדים עד גיל 5 ומופיע בקטגוריית הילדים של App Store. הוא לא אוסף שום מידע אישי מילדים, בהתאם לחוקים להגנה על פרטיות ילדים כמו COPPA בארצות הברית ו־GDPR באיחוד האירופי.</p>
+  <p>ביישום אין פרסומות, אין רכישות בתוך היישום, אין קישורים אל מחוץ ליישום ואין דרך ליצור קשר עם אנשים אחרים.</p>
+  <h2>בלי צדדים שלישיים</h2>
+  <p>Fruit Book לא כולל פרסום, ניתוח נתונים, מעקב או קוד של צד שלישי. אין בו חשבון או התחברות, והוא לא מתחבר לאינטרנט, ולכן הוא לא שולח נתונים אליי או לאף אחד אחר.</p>
+  <p>תווית הפרטיות שלו ב־App Store מציינת שלא נאספים נתונים.</p>
+  <h2>מה Apple עשויה לשתף איתי</h2>
+  <p>את Fruit Book קונים ב־App Store, ולכן Apple מטפלת בתשלום ובהורדה לפי מדיניות הפרטיות שלה. מ־Apple אני מקבל רק דוחות מכירות שלא מזהים אתכם.</p>
+  <p>אם בחרתם לשתף נתוני ניתוח עם מפתחי יישומים, Apple עשויה לשלוח לי דוחות קריסה אנונימיים וסטטיסטיקות שימוש מצטברות. אפשר לכבות זאת בהגדרות הניתוח שבהגדרות › פרטיות ואבטחה.</p>
+  <h2>הבחירות שלכם, שינויים ויצירת קשר</h2>
+  <p>אני לא שומר שום מידע אישי עליכם או על ילדיכם, ולכן אין מידע לעיין בו, לתקן או למחוק. אפשר להסיר את כל הציורים בכל עת על ידי מחיקת היישום.</p>
+  <p>אם היישום ישנה אי פעם את אופן הטיפול בנתונים, אעדכן את המדיניות הזו ואת תווית הפרטיות ב־App Store לפני שהגרסה הזו תשוחרר.</p>
+  <p>שאלות על המדיניות: <a href="mailto:support@fruitbook.app" dir="ltr">support@fruitbook.app</a></p>
+</section>
 </main>
 <footer>
   <span>© 2026 Burak Acemoğlu</span>
   <a href="./">Fruit Book</a>
-  <a href="support.html">Support / Destek</a>
-  <a href="privacy.html">Privacy Policy / Gizlilik Politikası</a>
+  <a href="support.html">Support</a>
+  <a href="privacy.html">Privacy Policy</a>
 </footer>
+<script>
+(function () {
+  function close(keep) {
+    var open = document.querySelectorAll("details.langmenu[open]");
+    for (var i = 0; i < open.length; i++) if (open[i] !== keep) open[i].removeAttribute("open");
+  }
+  document.addEventListener("click", function (e) {
+    var menu = e.target.closest ? e.target.closest("details.langmenu") : null;
+    close(menu && !e.target.closest("a") ? menu : null);
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.key !== "Escape") return;
+    var open = document.querySelector("details.langmenu[open]");
+    if (open) { close(null); open.querySelector("summary").focus(); }
+  });
+})();
+</script>
+<script>
+(function () {
+  if (location.hash) return;
+  function pick(have) {
+    var langs = navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || ""];
+    for (var i = 0; i < langs.length; i++) {
+      var l = String(langs[i]).toLowerCase(), b = l.split("-")[0];
+      if (b === "en") return "en";
+      if (b === "pt") return "pt-br";
+      if (b === "es") return l === "es" || l === "es-es" ? "es" : "es-419";
+      if (b === "iw") b = "he";
+      if (have.indexOf(b) >= 0) return b;
+    }
+    return "en";
+  }
+  var id = pick(["en", "tr", "de", "fr", "es", "es-419", "pt-br", "ja", "nl", "ar", "he"]);
+  var el = id !== "en" && document.getElementById(id);
+  if (!el) return;
+  history.replaceState(null, "", "#" + id);
+  el.scrollIntoView();
+})();
+</script>
 </body>
 </html>
