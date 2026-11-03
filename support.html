@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Support · Fruit Book</title>
+<meta name="description" content="Help and contact for Fruit Book.">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#74A01F">
+<link rel="icon" href="app-icon.png">
+<link rel="apple-touch-icon" href="app-icon.png">
+<style>
+@font-face { font-family: "FB Rounded"; src: url("nunito.woff") format("woff"); font-weight: 200 1000; font-display: swap; }
+
+:root {
+  --paper: #FFFDF6; --card: #FFFFFF; --ink: #222326; --muted: #5A5E55; --line: #ECE6D6;
+  --green-top: #74A01F; --green-bottom: #4E6409; --yellow: #FFC700; --link: #3B6E0A;
+  --font: ui-rounded, "SF Pro Rounded", "FB Rounded", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root { --paper: #131510; --card: #1C1F18; --ink: #F1F0EA; --muted: #A9AE9E; --line: #2C3027; --link: #B5DB5A; }
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: 500 17px/1.6 var(--font); }
+a { color: var(--link); text-underline-offset: 3px; }
+a:focus-visible { outline: 3px solid #FF8000; outline-offset: 3px; border-radius: 6px; }
+.band { background: linear-gradient(var(--green-top), var(--green-bottom)); color: #fff; }
+.band-inner, main, footer { max-width: 720px; margin: 0 auto; padding-left: max(20px, env(safe-area-inset-left)); padding-right: max(20px, env(safe-area-inset-right)); }
+.band-inner { padding-top: 28px; padding-bottom: 28px; display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+.band-inner img { width: 72px; height: 72px; border-radius: 16px; box-shadow: 0 6px 18px rgba(20, 30, 0, .35); }
+.brand { flex: 1; min-width: 200px; }
+.brand a { color: #fff; text-decoration: none; }
+.brand .name { margin: 0; font-size: 26px; font-weight: 900; line-height: 1.15; text-shadow: 0 1px 2px rgba(0, 0, 0, .2); }
+.brand .tag { margin: 2px 0 0; font-weight: 700; opacity: .95; }
+.langs { display: flex; gap: 8px; }
+.langs a { color: #fff; font-weight: 800; font-size: 15px; padding: 6px 12px; border-radius: 999px; background: rgba(255, 255, 255, .18); text-decoration: none; }
+main { padding-top: 36px; padding-bottom: 24px; }
+section + section { margin-top: 48px; padding-top: 40px; border-top: 2px dashed var(--line); }
+h1 { font-size: 34px; line-height: 1.15; margin: 0 0 8px; font-weight: 900; }
+h2 { font-size: 22px; line-height: 1.25; margin: 32px 0 6px; font-weight: 800; }
+h3 { font-size: 18px; margin: 22px 0 4px; font-weight: 800; }
+p, ul { margin: 0 0 12px; }
+ul { padding-left: 22px; }
+.lead { font-size: 19px; color: var(--muted); }
+.meta { color: var(--muted); font-size: 15px; }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 18px 20px; margin: 18px 0; }
+.mail { font-weight: 800; font-size: 19px; word-break: break-all; }
+footer { padding-top: 24px; padding-bottom: 40px; color: var(--muted); font-size: 15px; display: flex; gap: 16px; flex-wrap: wrap; }
+</style>
+</head>
+<body>
+<header class="band">
+  <div class="band-inner">
+    <img src="app-icon.png" alt="" width="72" height="72">
+    <div class="brand">
+      <p class="name"><a href="./">Fruit Book</a></p>
+      <p class="tag">A coloring book for little hands</p>
+    </div>
+    <nav class="langs" aria-label="Language / Dil"><a href="#en" lang="en">English</a><a href="#tr" lang="tr">Türkçe</a></nav>
+  </div>
+</header>
+<main>
+
+<section id="en" lang="en">
+  <h1>Support</h1>
+  <p class="lead">Questions, ideas or something not working? Write to me.</p>
+  <div class="card"><a class="mail" href="mailto:support@fruitbook.app">support@fruitbook.app</a><br><span class="meta">Please mention your device, for example iPad or iPhone Duo.</span></div>
+  <h2>Questions</h2>
+  <h3>How do I save a picture to Photos?</h3>
+  <p>Tap the save button at the top right, the tray with a down arrow. The first time, iOS asks whether Fruit Book may add photos: choose Allow.</p>
+  <h3>I didn’t allow Photos. How do I change that?</h3>
+  <p>Open Settings › Privacy &amp; Security › Photos › Fruit Book and choose Add Photos Only.</p>
+  <h3>How do I start a page again?</h3>
+  <p>Tap the trash button at the top and choose Clear Picture.</p>
+  <h3>Where are the paintings kept?</h3>
+  <p>Only on your device. Every page saves itself, and deleting the app deletes the paintings too.</p>
+  <h3>Does Fruit Book need the internet?</h3>
+  <p>No. It works anywhere, offline.</p>
+  <h3>Are there ads or in-app purchases?</h3>
+  <p>No. You pay once and the whole book is yours.</p>
+</section>
+<section id="tr" lang="tr">
+  <h1>Destek</h1>
+  <p class="lead">Bir sorunuz, öneriniz ya da çalışmayan bir şey mi var? Bana yazın.</p>
+  <div class="card"><a class="mail" href="mailto:support@fruitbook.app">support@fruitbook.app</a><br><span class="meta">Lütfen cihazınızı da yazın, örneğin iPad ya da iPhone Duo.</span></div>
+  <h2>Sorular</h2>
+  <h3>Bir resmi Fotoğraflar’a nasıl kaydederim?</h3>
+  <p>Sağ üstteki kaydet düğmesine, aşağı oklu tepsiye dokunun. İlk seferde iOS, Meyve Kitabı’nın fotoğraf ekleyip ekleyemeyeceğini sorar: İzin Ver’i seçin.</p>
+  <h3>Fotoğraflar iznini vermedim, nasıl değiştiririm?</h3>
+  <p>Ayarlar › Gizlilik ve Güvenlik › Fotoğraflar › Meyve Kitabı bölümünü açıp fotoğraf eklemeye izin verin.</p>
+  <h3>Bir sayfaya baştan nasıl başlarım?</h3>
+  <p>Üstteki çöp kutusu düğmesine dokunup Resmi Temizle’yi seçin.</p>
+  <h3>Resimler nerede saklanıyor?</h3>
+  <p>Yalnızca cihazınızda. Her sayfa kendiliğinden kaydedilir; uygulamayı silerseniz resimler de silinir.</p>
+  <h3>İnternet gerekiyor mu?</h3>
+  <p>Hayır. Her yerde, internetsiz çalışır.</p>
+  <h3>Reklam ya da uygulama içi satın alma var mı?</h3>
+  <p>Hayır. Bir kez ödersiniz, kitabın tamamı sizin olur.</p>
+</section>
+
+</main>
+<footer>
+  <span>© 2026 Burak Acemoğlu</span>
+  <a href="./">Fruit Book</a>
+  <a href="support.html">Support / Destek</a>
+  <a href="privacy.html">Privacy Policy / Gizlilik Politikası</a>
+</footer>
+</body>
+</html>
